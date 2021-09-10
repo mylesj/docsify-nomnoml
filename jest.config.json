@@ -1,0 +1,8 @@
+{
+	"preset": "ts-jest",
+	"rootDir": "./src",
+	"testEnvironment": "node",
+	"restoreMocks": true,
+	"collectCoverage": true,
+	"coverageDirectory": "../coverage"
+}

@@ -1,0 +1,62 @@
+{
+	"name": "docsify-nomnoml",
+	"version": "0.0.1",
+	"description": "Docsify plugin to render nomnoml code fences",
+	"author": "Myles J. <hi@mylesj.dev>",
+	"license": "MIT",
+	"keywords": [
+		"docsify",
+		"plugin",
+		"nomnoml",
+		"noml",
+		"uml"
+	],
+	"homepage": "https://github.com/mylesj/nomnoml#readme",
+	"bugs": "https://github.com/mylesj/nomnoml/issues",
+	"repository": "github:mylesj/docsify-nomnoml",
+	"files": [
+		"dist/"
+	],
+	"type": "module",
+	"main": "./dist/module.cjs",
+	"module": "./dist/module.mjs",
+	"exports": {
+		".": {
+			"import": "./dist/module.mjs",
+			"require": "./dist/module.cjs"
+		}
+	},
+	"scripts": {
+		"postinstall": "husky install",
+		"lint-staged": "lint-staged",
+		"clean": "rimraf ./dist/*",
+		"prebuild": "$npm_execpath run clean",
+		"build": "rollup -c ./rollup.config.js",
+		"test": "jest -c ./jest.config.json --verbose",
+		"docs": "docsify serve docs"
+	},
+	"peerDependencies": {
+		"graphre": "*",
+		"nomnoml": "*"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^20.0.0",
+		"@rollup/plugin-node-resolve": "^13.0.4",
+		"@rollup/plugin-typescript": "^8.2.5",
+		"@types/jest": "^27.0.1",
+		"@types/marked": "*",
+		"docsify-cli": "^4.4.3",
+		"graphre": "^0.1.3",
+		"husky": "^7.0.2",
+		"jest": "^27.1.0",
+		"lint-staged": "^11.1.2",
+		"nomnoml": "*",
+		"prettier": "^2.3.2",
+		"rimraf": "^3.0.2",
+		"rollup": "^2.56.3",
+		"rollup-plugin-uglify": "^6.0.4",
+		"ts-jest": "^27.0.5",
+		"tslib": "^2.3.1",
+		"typescript": "^3.9.10"
+	}
+}
