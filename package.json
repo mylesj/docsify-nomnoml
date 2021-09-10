@@ -11,8 +11,8 @@
 		"noml",
 		"uml"
 	],
-	"homepage": "https://github.com/mylesj/nomnoml#readme",
-	"bugs": "https://github.com/mylesj/nomnoml/issues",
+	"homepage": "https://github.com/mylesj/docsify-nomnoml#readme",
+	"bugs": "https://github.com/mylesj/docsify-nomnoml/issues",
 	"repository": "github:mylesj/docsify-nomnoml",
 	"files": [
 		"dist/"
