@@ -1,6 +1,6 @@
 # docsify-nomnoml
 
-A Docsify plugin to render nomnoml code fences.
+> _a docsify plugin to render nomnoml code fences_
 
 ## Install
 

@@ -1,7 +1,7 @@
 {
 	"name": "docsify-nomnoml",
 	"version": "0.0.1",
-	"description": "Docsify plugin to render nomnoml code fences",
+	"description": "a docsify plugin to render nomnoml code fences",
 	"author": "Myles J. <hi@mylesj.dev>",
 	"license": "MIT",
 	"keywords": [
