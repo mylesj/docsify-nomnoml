@@ -1,5 +1,7 @@
 # docsify-nomnoml
 
+[![codecov](https://codecov.io/gh/mylesj/docsify-nomnoml/branch/main/graph/badge.svg?token=N2HV4ZPB4P)](https://codecov.io/gh/mylesj/docsify-nomnoml)
+
 > _a docsify plugin to render nomnoml code fences_
 
 ## Install
