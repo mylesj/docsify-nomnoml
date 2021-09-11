@@ -27,6 +27,7 @@
 		}
 	},
 	"scripts": {
+		"prepublishOnly": "$npm_execpath run build",
 		"postinstall": "husky install",
 		"lint-staged": "lint-staged",
 		"clean": "rimraf ./dist/*",
