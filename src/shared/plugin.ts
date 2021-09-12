@@ -1,9 +1,6 @@
 import { Renderer, RendererObject, RendererThis } from 'marked'
-import { Nomnoml, Plugin } from './types'
-
-interface Dependencies {
-	nomnoml: Nomnoml
-}
+import { Dependencies, DocsifyPlugin } from './types'
+import { createSvgCreator } from './svg'
 
 const createRenderInterceptCreator =
 	(renderer: RendererObject) =>
@@ -24,9 +21,9 @@ const createRenderInterceptCreator =
 		}
 	}
 
-export const createPlugin =
-	({ nomnoml }: Dependencies): Plugin =>
-	(hook, vm) => {
+export const createPlugin = (dependencies: Dependencies): DocsifyPlugin => {
+	const svgCreator = createSvgCreator(dependencies)
+	return (hook, vm) => {
 		hook.init(() => {
 			if (!vm.config.markdown) {
 				vm.config.markdown = {}
@@ -46,7 +43,12 @@ export const createPlugin =
 					return false
 				}
 				try {
-					return nomnoml.renderSvg(content)
+					const maybeRender = svgCreator(content, <string>type)
+					if (maybeRender instanceof Error) {
+						console.error(maybeRender.message, maybeRender)
+						return false
+					}
+					return maybeRender
 				} catch (e) {
 					console.error('[nomnoml]', e)
 					return false
@@ -54,3 +56,4 @@ export const createPlugin =
 			})
 		})
 	}
+}
