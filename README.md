@@ -41,14 +41,12 @@ or
 
 ## Attributes
 
-Optional attributes may be specified after render directive - those supported are:
+Some optional attributes may be specified after the render directive:
 
--   **title** - text to be rendered in the `<title/>` element inside of the SVG -
-    it will additionally be set as the `aria-label` attribute on the SVG element
--   **class** - a custom CSS class can be added to the SVG element for specificity,
-    in addition to the default `nomnoml-svg` class
--   **width** - a width can be added to the SVG element
--   **height** - a height can be added to the SVG element
+-   **title** - text to be rendered in the SVG `<title/>` - additionally set as the `aria-label`
+-   **class** - custom CSS class added to the SVG in addition to the default `nomnoml-svg`
+-   **width** - a width can be added to the SVG
+-   **height** - a height can be added to the SVG
 
 _e.g._
 
