@@ -39,7 +39,7 @@ describe('when missing peer dependencies', () => {
 	it('should abort any attempt to register the plugin', () => {
 		window.$docsify = { plugins: [] }
 		require('./main-browser')
-		expect(window.$docsify?.plugins?.length).toBe(0)
+		expect(window.$docsify.plugins?.length).toBe(0)
 	})
 })
 
@@ -68,6 +68,7 @@ describe('when peer dependencies are met', () => {
 		require('./main-browser')
 		expect(window.$docsify).toEqual({
 			plugins: [thisPlugin],
+			nomnoml: {},
 		})
 	})
 
@@ -77,7 +78,25 @@ describe('when peer dependencies are met', () => {
 		window.$docsify = existingConfig
 		require('./main-browser')
 		expect(window.$docsify).toBe(existingConfig)
-		expect(window.$docsify?.plugins).toEqual([thisPlugin])
+		expect(window.$docsify.plugins).toEqual([thisPlugin])
+	})
+
+	it('should create $docsify.nomnoml if it does not exist on an existing config', () => {
+		setupDependencies()
+		const existingConfig = {}
+		window.$docsify = existingConfig
+		require('./main-browser')
+		expect(window.$docsify).toBe(existingConfig)
+		expect(window.$docsify.nomnoml).toEqual({})
+	})
+
+	it('should reset $docsify.nomnoml if it exists but is not an object', () => {
+		setupDependencies()
+		const existingConfig = { nomnoml: true }
+		window.$docsify = existingConfig
+		require('./main-browser')
+		expect(window.$docsify).toBe(existingConfig)
+		expect(window.$docsify.nomnoml).toEqual({})
 	})
 
 	it('should add to an existing $docsify.plugins configuration', () => {
@@ -85,14 +104,17 @@ describe('when peer dependencies are met', () => {
 		const existingPlugin = () => {}
 		window.$docsify = { plugins: [existingPlugin] }
 		require('./main-browser')
-		expect(window.$docsify?.plugins).toEqual([existingPlugin, thisPlugin])
+		expect(window.$docsify.plugins).toEqual([existingPlugin, thisPlugin])
 	})
 
 	it('should injecting the correct dependencies', () => {
 		setupDependencies()
+		const pluginConfig = {}
+		window.$docsify = { nomnoml: pluginConfig }
 		require('./main-browser')
 		expect(pluginCreator).toHaveBeenCalledWith({
 			nomnoml: dependency,
+			config: pluginConfig,
 		})
 	})
 })
