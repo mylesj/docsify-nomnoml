@@ -22,7 +22,7 @@ peer-dependencies, `nomnoml` and `graphre` should be loaded before the plugin.
 ## Usage
 
 To render a block, specify the code fence language as `nomnoml` or `noml` for short
-followed by a `renderSvg` directive or `render` for short.
+followed by a `renderSvg` instruction or `render` for short.
 
 ````none
 ```nomnoml renderSvg
@@ -40,7 +40,7 @@ _or_
 
 ## Attributes
 
-Some optional attributes may be specified after the render directive:
+Some optional attributes may be specified after the render instruction:
 
 -   **title** - text to be rendered in the SVG `<title/>` - additionally set as the `aria-label`
 -   **class** - custom CSS class added to the SVG in addition to the default `nomnoml-svg`
