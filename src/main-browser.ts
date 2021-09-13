@@ -1,3 +1,4 @@
+import { isObject } from './shared/util'
 import { createPlugin } from './shared/plugin'
 
 const PEER_DEPENDENCIES = ['graphre', 'nomnoml']
@@ -19,5 +20,13 @@ if (isMetDependencies) {
 	if (!window.$docsify.plugins) {
 		window.$docsify.plugins = []
 	}
-	window.$docsify.plugins.push(createPlugin({ nomnoml: window.nomnoml }))
+	if (!isObject(window.$docsify.nomnoml)) {
+		window.$docsify.nomnoml = {}
+	}
+	window.$docsify.plugins.push(
+		createPlugin({
+			nomnoml: window.nomnoml,
+			config: window.$docsify.nomnoml,
+		})
+	)
 }

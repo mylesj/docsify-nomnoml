@@ -1,8 +1,10 @@
 import nomnoml from 'nomnoml'
 
-import { createPlugin } from './shared/plugin'
+import { NomnomlConfig } from './shared/types'
+import { createPlugin as createPluginInternal } from './shared/plugin'
 
-export const docsifyNomnoml = createPlugin({ nomnoml })
+export const createPlugin = (config: NomnomlConfig) =>
+	createPluginInternal({ nomnoml, config })
 
 /*
  * This module was part of an inital experiment to register a plugin with docsify

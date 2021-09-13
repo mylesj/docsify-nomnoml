@@ -1,9 +1,11 @@
-import { Dependencies, Attribute, Attributes } from './types'
+import { Dependencies, Directives, Attribute, Attributes } from './types'
 import {
 	parseAttributes,
 	stringifyAttributes,
+	stringifyDirectives,
 	encodeHtmlReserved,
 	isValidCssClass,
+	isObject,
 } from './util'
 
 const USER_ATTRIBUTES: Attribute[] = ['title', 'class', 'width', 'height']
@@ -12,9 +14,13 @@ const USER_ATTRIBUTES: Attribute[] = ['title', 'class', 'width', 'height']
 const RE_MATCH_SVG_TAG = /(.*?)(<svg)(.*?)(\/?>)/i
 
 export const createSvgCreator =
-	({ nomnoml }: Dependencies) =>
+	({ nomnoml, config }: Dependencies) =>
 	(nomlnomlStr: string, attributes: string): string | Error => {
-		const svg = nomnoml.renderSvg(nomlnomlStr)
+		const directives = isObject(config.directives)
+			? `${stringifyDirectives(<Directives>config.directives)}\n`
+			: ''
+
+		const svg = nomnoml.renderSvg(`${directives}${nomlnomlStr}`)
 		const match = svg.match(RE_MATCH_SVG_TAG)
 
 		if (!match) {

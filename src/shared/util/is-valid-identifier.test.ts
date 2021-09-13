@@ -1,4 +1,8 @@
-import { isValidHtmlAttribute, isValidCssClass } from '.'
+import {
+	isValidHtmlAttribute,
+	isValidCssClass,
+	isValidNomnomlDirective,
+} from '.'
 
 describe('valid html attribute', () => {
 	it.each`
@@ -66,6 +70,35 @@ describe('valid css class', () => {
 		${'a%'}      | ${false}
 	`('expect `$input` to be $expected', ({ input, expected }) => {
 		const actual = isValidCssClass(input)
+		expect(actual).toBe(expected)
+	})
+})
+
+describe('valid nomnoml directive', () => {
+	it.each`
+		input        | expected
+		${''}        | ${false}
+		${undefined} | ${false}
+		${'a'}       | ${true}
+		${'A'}       | ${true}
+		${'0'}       | ${false}
+		${'foo'}     | ${true}
+		${'fooBar'}  | ${true}
+		${'a1'}      | ${false}
+		${'a-b'}     | ${false}
+		${'a_b'}     | ${false}
+		${'a.'}      | ${false}
+		${'a:'}      | ${false}
+		${'a;'}      | ${false}
+		${'a&'}      | ${false}
+		${'a<'}      | ${false}
+		${'a>'}      | ${false}
+		${'a!'}      | ${false}
+		${'a@'}      | ${false}
+		${'a$'}      | ${false}
+		${'a%'}      | ${false}
+	`('expect `$input` to be $expected', ({ input, expected }) => {
+		const actual = isValidNomnomlDirective(input)
 		expect(actual).toBe(expected)
 	})
 })

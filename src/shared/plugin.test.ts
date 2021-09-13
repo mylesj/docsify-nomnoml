@@ -33,7 +33,7 @@ beforeEach(() => {
 	nomnoml = (<unknown>{
 		renderSvg: jest.fn((x) => `<svg>${x}</svg>`),
 	}) as Nomnoml
-	plugin = createPlugin({ nomnoml })
+	plugin = createPlugin({ nomnoml, config: {} })
 	mockHook = {
 		init: function (fn: () => void) {
 			fn()

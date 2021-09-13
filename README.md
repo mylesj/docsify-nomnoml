@@ -2,6 +2,7 @@
 
 > _a docsify plugin to render nomnoml code fences_
 
+[![github](https://img.shields.io/badge/-github-%235b5b5b?logo=github)](https://github.com/mylesj/docsify-nomnoml)
 [![npm](https://img.shields.io/npm/v/docsify-nomnoml)](https://www.npmjs.com/package/docsify-nomnoml)
 [![codecov](https://codecov.io/gh/mylesj/docsify-nomnoml/branch/main/graph/badge.svg?token=N2HV4ZPB4P)](https://codecov.io/gh/mylesj/docsify-nomnoml)
 [![nomnoml](https://img.shields.io/badge/www-nomnoml-%23fdf6e3)](https://nomnoml.com)
@@ -23,15 +24,13 @@ peer-dependencies, `nomnoml` and `graphre` should be loaded before the plugin.
 To render a block, specify the code fence language as `nomnoml` or `noml` for short
 followed by a `renderSvg` directive or `render` for short.
 
-_e.g._
-
 ````none
 ```nomnoml renderSvg
 [Foo] -> [Bar]
 ```
 ````
 
-or
+_or_
 
 ````none
 ```noml render
@@ -48,10 +47,36 @@ Some optional attributes may be specified after the render directive:
 -   **width** - a width can be added to the SVG
 -   **height** - a height can be added to the SVG
 
-_e.g._
-
 ````none
 ```nomnoml renderSvg width=100% class=my-class title="My Diagram"
 [Foo] -> [Bar]
 ```
 ````
+
+## Directives
+
+While directives may ordinarily be specified in nomnoml code, it may be preferable to define
+some of them globally such that they are consistently applied throughout a docsify instance.
+For example:
+
+````
+```noml render
+#fontSize: 14
+#arrowSize: 1.5
+[Foo] -> [Bar]
+```
+````
+
+Which can instead be specified on the `$docsify` configuration object instead.
+
+```js
+window.$docsify = {
+	// ...
+	nomnoml: {
+		directives: {
+			fontSize: 14,
+			arrowSize: 1.5,
+		},
+	},
+}
+```
