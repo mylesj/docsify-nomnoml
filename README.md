@@ -67,7 +67,7 @@ For example:
 ```
 ````
 
-Which can instead be specified on the `$docsify` configuration object instead.
+Which can instead be specified on the `$docsify` configuration object.
 
 ```js
 window.$docsify = {
