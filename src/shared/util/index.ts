@@ -1,4 +1,5 @@
 export * from './is'
+export * from './auto-theme'
 export * from './parse-attributes'
 export * from './is-valid-identifier'
 export * from './stringify-attributes'
