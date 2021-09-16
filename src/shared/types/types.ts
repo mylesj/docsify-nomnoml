@@ -5,17 +5,24 @@ export type Attribute = 'title' | 'class' | 'width' | 'height'
 
 export type Attributes = Record<Attribute, string>
 
-export type Directives = {
-	[key in string]: unknown
+export type Directives<T = unknown> = {
+	[key in string]: T
 }
 
-export type NomnomlConfig = {
+export type AutoTheme = {
+	foregroundColor: string
+	backgroundColor: string
+}
+
+export type UserConfig = {
 	directives?: Directives
+	autotheme?: boolean
 }
 
 export interface Dependencies {
 	nomnoml: Nomnoml
-	config: NomnomlConfig
+	config: UserConfig
+	autotheme?: AutoTheme[]
 }
 
 export interface DocsifyInstance {

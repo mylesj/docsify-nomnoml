@@ -5,6 +5,7 @@ import {
 	stringifyDirectives,
 	encodeHtmlReserved,
 	isValidCssClass,
+	getThemeStyles,
 	isObject,
 } from './util'
 
@@ -14,12 +15,20 @@ const USER_ATTRIBUTES: Attribute[] = ['title', 'class', 'width', 'height']
 const RE_MATCH_SVG_TAG = /(.*?)(<svg)(.*?)(\/?>)/i
 
 export const createSvgCreator =
-	({ nomnoml, config }: Dependencies) =>
+	({ nomnoml, config, autotheme }: Dependencies) =>
 	(nomlnomlStr: string, attributes: string): string | Error => {
-		const directives = isObject(config.directives)
+		const userDirectives = isObject(config.directives)
 			? `${stringifyDirectives(<Directives>config.directives)}\n`
 			: ''
 
+		let themeDirectives = ''
+		if (autotheme && config.autotheme !== false) {
+			themeDirectives = stringifyDirectives(getThemeStyles(autotheme))
+		}
+
+		const directives = [themeDirectives, userDirectives]
+			.filter(Boolean)
+			.join('\n')
 		const svg = nomnoml.renderSvg(`${directives}${nomlnomlStr}`)
 		const match = svg.match(RE_MATCH_SVG_TAG)
 

@@ -115,6 +115,12 @@ describe('when peer dependencies are met', () => {
 		expect(pluginCreator).toHaveBeenCalledWith({
 			nomnoml: dependency,
 			config: pluginConfig,
+			autotheme: expect.arrayContaining([
+				expect.objectContaining({
+					foregroundColor: expect.any(String),
+					backgroundColor: expect.any(String),
+				}),
+			]),
 		})
 	})
 })

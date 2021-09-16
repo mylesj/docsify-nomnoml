@@ -1,9 +1,9 @@
 import nomnoml from 'nomnoml'
 
-import { NomnomlConfig } from './shared/types'
+import { UserConfig } from './shared/types'
 import { createPlugin as createPluginInternal } from './shared/plugin'
 
-export const createPlugin = (config: NomnomlConfig) =>
+export const createPlugin = (config: UserConfig) =>
 	createPluginInternal({ nomnoml, config })
 
 /*

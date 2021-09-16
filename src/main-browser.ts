@@ -23,10 +23,25 @@ if (isMetDependencies) {
 	if (!isObject(window.$docsify.nomnoml)) {
 		window.$docsify.nomnoml = {}
 	}
+
+	const [rootStyle, bodyStyle] = [':root', 'body'].map((selector) =>
+		window.getComputedStyle(<Element>document.querySelector(selector))
+	)
+
 	window.$docsify.plugins.push(
 		createPlugin({
 			nomnoml: window.nomnoml,
 			config: window.$docsify.nomnoml,
+			autotheme: [
+				{
+					foregroundColor: rootStyle.color,
+					backgroundColor: rootStyle.backgroundColor,
+				},
+				{
+					foregroundColor: bodyStyle.color,
+					backgroundColor: bodyStyle.backgroundColor,
+				},
+			],
 		})
 	)
 }

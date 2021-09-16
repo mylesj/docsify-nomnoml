@@ -1,8 +1,8 @@
-import { Nomnoml, NomnomlConfig } from './types'
+import { Nomnoml, UserConfig } from './types'
 import { createSvgCreator } from './svg'
 
 let nomnoml: Nomnoml
-let config: NomnomlConfig
+let config: UserConfig
 beforeEach(() => {
 	;(nomnoml = {} as Nomnoml), (config = {})
 })
@@ -102,6 +102,34 @@ describe('when valid input is rendered by nomnoml', () => {
 		const createSvg = createSvgCreator({ nomnoml, config })
 		const expected =
 			'<svg role="img" aria-label="title" class="nomnoml-svg"><title>title</title>#foo: 111\n#bar: 222\n#baz: 333\n[a]->[b]</svg>'
+		const actual = createSvg(
+			'#baz: 333\n[a]->[b]',
+			'noml render title=title'
+		)
+		expect(actual).toBe(expected)
+	})
+
+	it('should concatenate theme directives if resolved successfully', () => {
+		nomnoml.renderSvg = (x) => `<svg>${x}</svg>`
+		config.directives = {
+			foo: 111,
+			bar: '222',
+		}
+		const autotheme = [
+			{
+				foregroundColor: '#ffffff',
+				backgroundColor: '#000000',
+			},
+		]
+		const createSvg = createSvgCreator({ nomnoml, config, autotheme })
+		const expected = [
+			'<svg role="img" aria-label="title" class="nomnoml-svg"><title>title</title>#stroke: var(--nomnoml-svg-stroke, var(--theme-color, #ffffff))',
+			'#fill: var(--nomnoml-svg-fill-1, var(--mono-shade2, #000000)); var(--nomnoml-svg-fill-2, var(--mono-shade3, #000000))',
+			'#foo: 111',
+			'#bar: 222',
+			'#baz: 333',
+			'[a]->[b]</svg>',
+		].join('\n')
 		const actual = createSvg(
 			'#baz: 333\n[a]->[b]',
 			'noml render title=title'
