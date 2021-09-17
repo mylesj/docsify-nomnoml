@@ -18,7 +18,7 @@ export const createSvgCreator =
 	({ nomnoml, config, autotheme }: Dependencies) =>
 	(nomlnomlStr: string, attributes: string): string | Error => {
 		const userDirectives = isObject(config.directives)
-			? `${stringifyDirectives(<Directives>config.directives)}\n`
+			? stringifyDirectives(<Directives>config.directives)
 			: ''
 
 		let themeDirectives = ''
@@ -30,8 +30,9 @@ export const createSvgCreator =
 			.filter(Boolean)
 			.join('\n')
 
-		console.log(`${directives}${directives ? '\n\n' : ''}${nomlnomlStr}`)
-		const svg = nomnoml.renderSvg(`${directives}${nomlnomlStr}`)
+		const separator = directives ? '\n' : ''
+
+		const svg = nomnoml.renderSvg(`${directives}${separator}${nomlnomlStr}`)
 		const match = svg.match(RE_MATCH_SVG_TAG)
 
 		if (!match) {
