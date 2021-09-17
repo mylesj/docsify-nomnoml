@@ -17,7 +17,7 @@ peer-dependencies, `nomnoml` and `graphre` must be loaded before the plugin.
 ```html
 <script src="//cdn.jsdelivr.net/npm/graphre@0.1/dist/graphre.js"></script>
 <script src="//cdn.jsdelivr.net/npm/nomnoml@1.4/dist/nomnoml.js"></script>
-<script src="//cdn.jsdelivr.net/npm/docsify-nomnoml/dist/plugin.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-nomnoml@1/dist/plugin.min.js"></script>
 ```
 
 ## Usage

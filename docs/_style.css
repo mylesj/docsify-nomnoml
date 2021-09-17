@@ -1,0 +1,7 @@
+.github-corner {
+	position: fixed;
+}
+
+[data-page='home.md'] .nomnoml-svg {
+	width: 100%;
+}
