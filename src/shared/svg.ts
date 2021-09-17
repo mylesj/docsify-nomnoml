@@ -29,6 +29,8 @@ export const createSvgCreator =
 		const directives = [themeDirectives, userDirectives]
 			.filter(Boolean)
 			.join('\n')
+
+		console.log(`${directives}${directives ? '\n\n' : ''}${nomlnomlStr}`)
 		const svg = nomnoml.renderSvg(`${directives}${nomlnomlStr}`)
 		const match = svg.match(RE_MATCH_SVG_TAG)
 
