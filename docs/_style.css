@@ -1,7 +1,12 @@
+:root {
+	--blockquote-em-font-style: italic;
+}
+
 .github-corner {
 	position: fixed;
 }
 
-[data-page='home.md'] .nomnoml-svg {
+.nomnoml-svg.centered,
+[data-page='intro.md'] .nomnoml-svg {
 	width: 100%;
 }

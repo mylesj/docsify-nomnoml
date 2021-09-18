@@ -1,6 +1,6 @@
 # docsify-nomnoml
 
-> _a docsify plugin to render nomnoml code fences_
+> :information_source: &nbsp; A docsify plugin to render nomnoml code fences.
 
 [![nomnoml](https://img.shields.io/badge/www-nomnoml-%23fdf6e3)](https://nomnoml.com)
 [![docsify](https://img.shields.io/badge/www-docsify-%2342b983)](https://docsify.js.org)
@@ -8,31 +8,31 @@
 
 <!-- tabs:start -->
 
-<!-- tab:Nomnoml -->
+<!-- tab:SVG Diagram -->
 
-```nomnoml renderSvg
+```nomnoml renderSvg title="A nomnoml example modelling this docsify plugin"
 # direction: right
-[<reference>theme | stroke: <color>; fill: <color>]
+[<reference> theme | stroke: <color>; fill: <color>]
 [docsify |
   [config] <:- [nomnoml]
 ]
-[<abstract>nomnoml|title; class; width; height | render()|
-  [<actor>☺] -- [<instance>render]
+[<abstract> nomnoml | title; class; width; height | render() |
+  [<actor> ☺] -- [<instance> render]
 ]
 [docsify] -> [nomnoml]
 ```
 
-<!-- tab:Source -->
+<!-- tab:Markdown -->
 
 ````markdown » nomnoml
 ```nomnoml renderSvg
 # direction: right
-[<reference>theme | stroke: <color>; fill: <color>]
+[<reference> theme | stroke: <color>; fill: <color>]
 [docsify |
   [config] <:- [nomnoml]
 ]
-[<abstract>nomnoml|title; class; width; height | render()|
-  [<actor>☺] -- [<instance>render]
+[<abstract> nomnoml | title; class; width; height | render() |
+  [<actor> ☺] -- [<instance> render]
 ]
 [docsify] -> [nomnoml]
 ```
