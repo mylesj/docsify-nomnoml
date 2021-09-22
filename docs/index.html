@@ -23,6 +23,30 @@
 				repo: 'mylesj/docsify-nomnoml',
 				homepage: 'intro.md',
 				loadSidebar: true,
+				plugins: [
+					(hook, vm) => {
+						hook.doneEach(() => {
+							try {
+								const titleEl = document.querySelector(
+									'.sidebar-nav .active'
+								)
+								const parentEl =
+									titleEl.closest('li:not(.active)')
+								const pageTitle = [parentEl, titleEl]
+									.filter(Boolean)
+									.map((el) =>
+										el
+											.querySelector(':scope > a')
+											.getAttribute('title')
+									)
+									.join(' - ')
+								document.title = `Docsify Nomnoml | ${pageTitle}`
+							} catch (e) {
+								console.error(e)
+							}
+						})
+					},
+				],
 			}
 		</script>
 		<!-- Docsify v4 -->
